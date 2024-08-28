@@ -1,17 +1,17 @@
 
+import { Box } from '@mui/material'
 import './App.css'
 import Header from "./components/header/Header"
-import HeroSection from './components/HeroSection'
+import Home from './components/home/Home'
 function App() {
   
 
   return (
    <>
    <Header />
-   {/* <h2>thel
-
-   </h2>
-   <HeroSection /> */}
+  <Box sx={{backgroundColor:"#f3f3f3"}}>
+<Home />
+  </Box>
    </>
   )
 }

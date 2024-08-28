@@ -18,6 +18,7 @@ export default function CustomButtons() {
     display: flex;
     align-items: center;
     margin-left: 16px; /* Adjust spacing between items */
+    cursor:pointer;
   `;
 
   return (
@@ -43,6 +44,7 @@ export default function CustomButtons() {
       </ItemBox>
       <ItemBox sx={{color:'black', padding:1,'&:hover': {
           backgroundColor: '#efefef',
+          borderRadius:1
         },}}>
       <MoreVertOutlinedIcon  />
       </ItemBox>
