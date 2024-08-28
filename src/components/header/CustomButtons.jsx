@@ -1,14 +1,17 @@
 import { Box, Button, Typography, styled } from "@mui/material";
 import React from "react";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import StorefrontIcon from "@mui/icons-material/Storefront";
+import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 
 export default function CustomButtons() {
   const Wrapper = styled(Box)`
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    color:black;
+    width:80%;
   `;
 
   const ItemBox = styled(Box)`
@@ -20,20 +23,28 @@ export default function CustomButtons() {
   return (
     <Wrapper>
       <ItemBox>
-        <AccountCircleOutlinedIcon />
-        <Button variant="text" color="secondary">
+        <Button sx={{color:'black','&:hover': {
+          backgroundColor: 'blue',
+          color: 'white',
+        },}}>
+        <AccountCircleOutlinedIcon  sx={{paddingX:'8px'}}/>
           Login
         </Button>
       </ItemBox>
 
       <ItemBox>
-        <ShoppingCartIcon />
+        <ShoppingCartOutlinedIcon />
         <Typography>Cart</Typography>
       </ItemBox>
 
       <ItemBox>
         <StorefrontIcon />
-        <Typography style={{ width: 135 }}>Become a Seller</Typography>
+        <Typography style={{ width: 135,paddingLeft:8 }}>Become a Seller</Typography>
+      </ItemBox>
+      <ItemBox sx={{color:'black', padding:1,'&:hover': {
+          backgroundColor: '#efefef',
+        },}}>
+      <MoreVertOutlinedIcon  />
       </ItemBox>
     </Wrapper>
   );
