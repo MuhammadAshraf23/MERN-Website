@@ -16,7 +16,7 @@ const products = [
 
 export default function Navbar() {
   return (
-    <Box display="flex" justifyContent="space-around">
+    <Box display="flex" justifyContent="space-around" sx={{marginTop:8, width:1000,backgroundColor:'#fff'}}>
       {products.map((product, index) => {
         console.log("Product:", product); // Logging each product to the console
         return (

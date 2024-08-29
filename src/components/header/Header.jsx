@@ -8,6 +8,7 @@ const Header = () => {
   `
     background: #fff;
     height: 55px;
+  
   `;
   const Component = styled(Box)`
     margin-left: 12%;
