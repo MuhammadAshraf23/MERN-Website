@@ -7,7 +7,7 @@ const Header = () => {
   const StyledHeader = styled(AppBar)
   `
     background: #fff;
-    height: 55px;
+    height: 65px;
   
   `;
   const Component = styled(Box)`
@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <StyledHeader>
-      <Toolbar style={{minHeight:55}}>
+      <Toolbar sx={{padding:'24px'}}>
         <img src="https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/fkheaderlogo_exploreplus-44005d.svg" alt="" />
         <Search />
         <CustomButtons />

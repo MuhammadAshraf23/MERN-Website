@@ -1,64 +1,75 @@
-import React from "react";
+import React from 'react';
+import { Box, Card, CardContent, CardMedia, Typography } from '@mui/material';
 
-// Example product data
 const products = [
-  { name: "Grocery", image: "https://rukminim1.flixcart.com/flap/64/64/image/29327f40e9c4d26b.png?q=100" },
-  { name: "Mobile", image: "https://rukminim1.flixcart.com/flap/64/64/image/22fddf3c7da4c4f4.png?q=100" },
-  { name: "Fashion", image: "https://rukminim1.flixcart.com/fk-p-flap/64/64/image/0d75b34f7d8fbcb3.png?q=100" },
-  { name: "Electronics", image: "https://rukminim1.flixcart.com/flap/64/64/image/69c6589653afdb9a.png?q=100" },
-  { name: "Home & Furniture", image: "https://rukminim1.flixcart.com/flap/64/64/image/ab7e2b022a4587dd.jpg?q=100" },
-  { name: "Beauty, Toys & More", image: "https://rukminim1.flixcart.com/flap/64/64/image/dff3f7adcf3a90c6.png?q=100" },
-  { name: "Appliances", image: "https://rukminim1.flixcart.com/fk-p-flap/64/64/image/0139228b2f7eb413.jpg?q=100" },
-  { name: "Travel", image: "https://rukminim1.flixcart.com/flap/64/64/image/71050627a56b4693.png?q=100" },
+  {
+    id: 1,
+    name: 'Product 1',
+    image: 'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/y/9/0/-original-imahyuhfg2z4fvyh.jpeg?q=70',
+    price: '$10',
+  },
+  {
+    id: 2,
+    name: 'Product 2',
+    image: 'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/y/9/0/-original-imahyuhfg2z4fvyh.jpeg?q=70',
+    price: '$20',
+  },
+  {
+    id: 3,
+    name: 'Product 3',
+    image: 'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/y/9/0/-original-imahyuhfg2z4fvyh.jpeg?q=70',
+    price: '$30',
+  },
+  {
+    id: 4,
+    name: 'Product 4',
+    image: 'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/y/9/0/-original-imahyuhfg2z4fvyh.jpeg?q=70',
+    price: '$40',
+  },
+  {
+    id: 5,
+    name: 'Product 5',
+    image: 'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/y/9/0/-original-imahyuhfg2z4fvyh.jpeg?q=70',
+    price: '$50',
+  },
 ];
 
-export default function Electronics() {
+export default function ProductFlex() {
   return (
-    <div style={navbarStyle}>
-      {products.map((product, index) => (
-        <div key={index} style={productContainerStyle}>
-          <div style={imageContainerStyle}>
-            <img src={product.image} alt={`${product.name} icon`} style={imageStyle} />
-          </div>
-          <div>
-            <p style={textStyle}>{product.name}</p>
-          </div>
-        </div>
+    <Box sx={{ display: 'flex', flexWrap: 'nowrap', gap: 2, padding: 2, overflowX: 'auto',background:'#ffff' }}>
+      {products.map((product) => (
+        <Box
+          key={product.id}
+          sx={{
+           width:'200px',
+            padding:'10px',
+            boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+          }}
+        >
+          <Card>
+            <CardMedia
+              component="img"
+              height="150"
+              image={product.image}
+              alt={product.name}
+            />
+            <CardContent>
+              <Typography variant="h6" component="div">
+                {product.name}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {product.price}
+              </Typography>
+            </CardContent>
+          </Card>
+        </Box>
       ))}
-    </div>
+      <Box  sx={{objectPosition:'center',height:
+        '10px',width:'10px'
+      }}>
+        <img src="https://rukminim2.flixcart.com/fk-p-flap/530/810/image/32e8514665f65267.jpg?q=20" alt="" width={100} />
+      </Box>
+        
+    </Box>
   );
 }
-
-// CSS in JS
-const navbarStyle = {
-  display: "flex",
-  justifyContent: "space-around",
-  paddingLeft: '50px',
-  margin: '65px 0 18px 0',
-  width: '100%',
-  height: '130px',
-  backgroundColor: '#fff',
-};
-
-const productContainerStyle = {
-  width: 120,
-  textAlign: 'center',
-};
-
-const imageContainerStyle = {
-  height: '70px',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-};
-
-const imageStyle = {
-  maxHeight: '100%',
-  maxWidth: '100%',
-};
-
-const textStyle = {
-  fontSize: "14px",
-  fontWeight: 'bold',
-};
-

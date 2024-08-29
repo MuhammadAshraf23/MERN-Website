@@ -28,7 +28,7 @@ export default function CustomButtons() {
           backgroundColor: 'blue',
           color: 'white',
         },}}>
-        <AccountCircleOutlinedIcon  sx={{paddingX:'8px'}}/>
+        <AccountCircleOutlinedIcon  sx={{paddingX:'8px',fontSize:45}}/>
           Login
         </Button>
       </ItemBox>

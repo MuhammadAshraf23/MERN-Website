@@ -34,7 +34,7 @@ const navbarStyle = {
   display: "flex",
   justifyContent: "space-around",
   paddingLeft: '50px',
-  margin: '65px 0 18px 0',
+  margin: '75px 0 18px 0',
   width: '100%',
   height: '130px',
   backgroundColor: '#fff',
