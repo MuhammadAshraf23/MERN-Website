@@ -12,7 +12,7 @@ const products = [
   { name: "Travel", image: "https://rukminim1.flixcart.com/flap/64/64/image/71050627a56b4693.png?q=100" },
 ];
 
-export default function Navbar() {
+export default function Electronics() {
   return (
     <div style={navbarStyle}>
       {products.map((product, index) => (

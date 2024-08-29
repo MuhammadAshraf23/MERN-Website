@@ -5,7 +5,7 @@ import SlideShow from "./SlideShow";
 
 export default function Home() {
   return (
-    <Box sx={{}}>
+    <Box sx={{width:'98%'}}>
       <Navbar />
       <SlideShow />
     </Box>

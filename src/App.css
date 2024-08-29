@@ -1,3 +1,8 @@
 .css-hyum1k-MuiToolbar-root{
   min-height: 55px !important;
 }
+.react-slideshow-container .default-nav{
+  height: 60px !important;
+  border-radius: 2px !important;
+  background: white !important;
+}

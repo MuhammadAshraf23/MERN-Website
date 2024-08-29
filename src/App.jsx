@@ -11,7 +11,7 @@ function App() {
   return (
    <>
    <Header />
-  <Box sx={{backgroundColor:"#f3f3f3",display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',width:'90%'}}>
+  <Box sx={{backgroundColor:"#f3f3f3",display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',width:'100%'}}>
 <Home />
   </Box>
    </>
