@@ -3,7 +3,6 @@ import { Box } from '@mui/material';
 import './App.css';
 import Header from "./components/header/Header";
 import Home from './components/home/Home';
-import 'react-slideshow-image/dist/styles.css'
 
 function App() {
   
