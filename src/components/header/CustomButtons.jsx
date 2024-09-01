@@ -1,9 +1,10 @@
 import { Box, Button, Typography, styled } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import StorefrontIcon from "@mui/icons-material/Storefront";
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
+import LoginDialog from "../login/LoginDialog";
 
 export default function CustomButtons() {
   const Wrapper = styled(Box)`
@@ -21,13 +22,17 @@ export default function CustomButtons() {
     cursor:pointer;
   `;
 
+  const [open,setOpen]=useState(false)
+  const openDialog=()=>{
+    setOpen(true)
+  }
   return (
     <Wrapper>
       <ItemBox>
         <Button sx={{color:'black','&:hover': {
           backgroundColor: 'blue',
           color: 'white',
-        },}}>
+        },}} onClick={()=>openDialog()}>
         <AccountCircleOutlinedIcon  sx={{paddingX:'8px',fontSize:45}}/>
           Login
         </Button>
@@ -47,6 +52,7 @@ export default function CustomButtons() {
           borderRadius:1
         },}}>
       <MoreVertOutlinedIcon  />
+      <LoginDialog open={open} setOpen={setOpen}/>
       </ItemBox>
     </Wrapper>
   );

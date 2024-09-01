@@ -26,10 +26,11 @@ export default function Banner() {
 
   const Img=styled("img")({
     width:'100%',
-    height:'280px'
+    height:'280px',
   })
   return (
-    <Carousel showDots={true}
+    <Carousel 
+    showDots={true}
     responsive={responsive} 
     infinite={true} 
     autoPlay={true}

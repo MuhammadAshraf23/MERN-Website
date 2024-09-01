@@ -1,3 +1,13 @@
+/* Header.jsx */
 .css-hyum1k-MuiToolbar-root{
   min-height: 55px !important;
 }
+/* Banner.jsx */
+.react-multi-carousel-list{
+  margin-top: 20px;
+}
+
+/* LoginDialog.jsx */
+/* .css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+  width: 100% !important;
+} */
