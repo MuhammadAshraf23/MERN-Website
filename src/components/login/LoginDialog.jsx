@@ -93,6 +93,8 @@ export default function LoginDialog({ open, setOpen }) {
 
   const signupUser=async()=>{
   const response= await authenticateSignup(signup)
+  if(!response) return;
+  handleClose();
   }
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="md">
