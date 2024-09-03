@@ -75,7 +75,7 @@ const signupInitialValues = {
 };
 
 export default function LoginDialog({ open, setOpen }) {
-  const [account, setAccount] = useState(accountInitialValue.login);
+  const [loginState, setLoginState] = useState(accountInitialValue.login);
   const [signup,setSignup]=useState(signupInitialValues)
 
   console.log("sign",signup.firstName)
@@ -83,7 +83,7 @@ export default function LoginDialog({ open, setOpen }) {
     setOpen(false);
   };
   const toggleAccount = (e) => {
-    setAccount(accountInitialValue.signup);
+    setLoginState(accountInitialValue.signup);
   };
   
   const handleInputChange=(e)=>{
@@ -101,13 +101,13 @@ export default function LoginDialog({ open, setOpen }) {
       <Component>
         <Image>
           <Typography variant="h5" style={{ fontWeight: "bold" }}>
-            {account.heading}
+            {loginState.heading}
           </Typography>
           <Typography sx={{ marginTop: "20px" }}>
-            {account.subHeading}
+            {loginState.subHeading}
           </Typography>
         </Image>
-        {account.view === "login" ? (
+        {loginState.view === "login" ? (
           <Wrapper>
             <TextField
               variant="standard"
