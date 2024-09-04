@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Box,
   Button,
@@ -8,6 +8,8 @@ import {
   Typography,
 } from "@mui/material";
 import { authenticateSignup } from "../../services/Api";
+import { DataContext } from "../../context/DataProvider";
+
 const Component = styled(Box)`
   height: 70vh;
   width: 90vh;
@@ -53,6 +55,7 @@ const TypographyLink = styled(Typography)`
   cursor: pointer;
   color: #2874f0;
 `;
+
 const accountInitialValue = {
   login: {
     view: "login",
@@ -66,36 +69,30 @@ const accountInitialValue = {
   },
 };
 
-const signupInitialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  password: "",
-  phoneNumber: "",
-};
-
 export default function LoginDialog({ open, setOpen }) {
+  const { signup, setSignup,setAccount } = useContext(DataContext);
   const [loginState, setLoginState] = useState(accountInitialValue.login);
-  const [signup,setSignup]=useState(signupInitialValues)
 
-  console.log("sign",signup.firstName)
   const handleClose = () => {
     setOpen(false);
   };
-  const toggleAccount = (e) => {
+
+  const toggleAccount = () => {
     setLoginState(accountInitialValue.signup);
   };
-  
-  const handleInputChange=(e)=>{
-      const {name,value}=e.target
-    setSignup({...signup,[name]:value})
-  }
 
-  const signupUser=async()=>{
-  const response= await authenticateSignup(signup)
-  if(!response) return;
-  handleClose();
-  }
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setSignup({ ...signup, [name]: value });
+  };
+
+  const signupUser = async () => {
+    const response = await authenticateSignup(signup);
+    if (!response) return;
+    handleClose();
+    setAccount(signup.firstName)
+  };
+
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="md">
       <Component>
@@ -135,60 +132,60 @@ export default function LoginDialog({ open, setOpen }) {
             <RequestOtpButton variant="outlined" fullWidth>
               Request OTP
             </RequestOtpButton>
-            <TypographyLink onClick={() => toggleAccount()}>
+            <TypographyLink onClick={toggleAccount}>
               New to Flipkart? Create an account
             </TypographyLink>
           </Wrapper>
         ) : (
           <Wrapper>
-          <TextField
-            variant="standard"
-            label="First Name"
-            name="firstName"
-            value={signup.firstName}
-            onChange={handleInputChange}
-            fullWidth
-            sx={{ marginBottom: "20px" }}
-          />
-          <TextField
-            variant="standard"
-            label="Last Name"
-            name="lastName"
-            value={signup.lastName}
-            onChange={handleInputChange}
-            fullWidth
-            sx={{ marginBottom: "20px" }}
-          />
-          <TextField
-            variant="standard"
-            label="Email"
-            name="email"
-            value={signup.email}
-            onChange={handleInputChange}
-            fullWidth
-            sx={{ marginBottom: "20px" }}
-          />
-          <TextField
-            variant="standard"
-            label="Password"
-            type="password"
-            name="password"
-            value={signup.password}
-            onChange={handleInputChange}
-            fullWidth
-            sx={{ marginBottom: "14px" }}
-          />
-          <TextField
-            variant="standard"
-            label="Phone Number"
-            name="phoneNumber"
-            value={signup.phoneNumber}
-            onChange={handleInputChange}
-            fullWidth
-            sx={{ marginBottom: "20px" }}
-          />
-          <LoginButton onClick={()=>signupUser()}>Continue</LoginButton>
-        </Wrapper>
+            <TextField
+              variant="standard"
+              label="First Name"
+              name="firstName"
+              value={signup.firstName}
+              onChange={handleInputChange}
+              fullWidth
+              sx={{ marginBottom: "20px" }}
+            />
+            <TextField
+              variant="standard"
+              label="Last Name"
+              name="lastName"
+              value={signup.lastName}
+              onChange={handleInputChange}
+              fullWidth
+              sx={{ marginBottom: "20px" }}
+            />
+            <TextField
+              variant="standard"
+              label="Email"
+              name="email"
+              value={signup.email}
+              onChange={handleInputChange}
+              fullWidth
+              sx={{ marginBottom: "20px" }}
+            />
+            <TextField
+              variant="standard"
+              label="Password"
+              type="password"
+              name="password"
+              value={signup.password}
+              onChange={handleInputChange}
+              fullWidth
+              sx={{ marginBottom: "14px" }}
+            />
+            <TextField
+              variant="standard"
+              label="Phone Number"
+              name="phoneNumber"
+              value={signup.phoneNumber}
+              onChange={handleInputChange}
+              fullWidth
+              sx={{ marginBottom: "20px" }}
+            />
+            <LoginButton onClick={signupUser}>Continue</LoginButton>
+          </Wrapper>
         )}
       </Component>
     </Dialog>
