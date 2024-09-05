@@ -68,17 +68,25 @@ const accountInitialValue = {
     subHeading: "Signup with your mobile to get started",
   },
 };
+const signupInitialValues = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  phoneNumber: "",
+};
+
 
 export default function LoginDialog({ open, setOpen }) {
-  const { signup, setSignup,setAccount } = useContext(DataContext);
-  const [loginState, setLoginState] = useState(accountInitialValue.login);
-
+  const { setAccount} = useContext(DataContext);
+  const [signup, setSignup] = useState(signupInitialValues);
+  const [loginState, seLoginState] = useState(accountInitialValue.login);
   const handleClose = () => {
     setOpen(false);
   };
 
   const toggleAccount = () => {
-    setLoginState(accountInitialValue.signup);
+    seLoginState(accountInitialValue.signup);
   };
 
   const handleInputChange = (e) => {
@@ -88,7 +96,7 @@ export default function LoginDialog({ open, setOpen }) {
 
   const signupUser = async () => {
     const response = await authenticateSignup(signup);
-    if (!response) return;
+     if (!response) return;
     handleClose();
     setAccount(signup.firstName)
   };

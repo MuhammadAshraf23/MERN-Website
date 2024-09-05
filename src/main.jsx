@@ -5,9 +5,9 @@ import './index.css'
 import DataProvider, { DataContext } from './context/DataProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
- <StrictMode>
+ <>
  <DataProvider>
     <App />
   </DataProvider>
- </StrictMode>
+ </>
 )
