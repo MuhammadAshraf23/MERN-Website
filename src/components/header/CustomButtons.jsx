@@ -26,7 +26,7 @@ const ItemBox = styled(Box)`
 
 export default function CustomButtons() {
   const [open, setOpen] = useState(false);
-  const { account } = useContext(DataContext);
+  const { account,setAccount } = useContext(DataContext);
 
   const openDialog = () => {
     setOpen(true);
@@ -35,7 +35,7 @@ export default function CustomButtons() {
     <Wrapper>
       <ItemBox>
         {account ? (
-          <Profile  account={account}/>
+          <Profile  account={account} setAccount={setAccount}/>
         ) : (
           <Button
             sx={{

@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { authenticateSignup } from "../../services/Api";
+import { authenticateSignup,authenticateLogin} from "../../services/Api";
 import { DataContext } from "../../context/DataProvider";
 
 const Component = styled(Box)`
@@ -76,11 +76,17 @@ const signupInitialValues = {
   phoneNumber: "",
 };
 
+const loginInitialValues={
+  email:'',
+  password:''
+
+}
 
 export default function LoginDialog({ open, setOpen }) {
   const { setAccount} = useContext(DataContext);
   const [signup, setSignup] = useState(signupInitialValues);
   const [loginState, seLoginState] = useState(accountInitialValue.login);
+  const [login,setLogin]=useState(loginInitialValues)
   const handleClose = () => {
     setOpen(false);
   };
@@ -101,6 +107,16 @@ export default function LoginDialog({ open, setOpen }) {
     setAccount(signup.firstName)
   };
 
+  const handleValueChange = (e) => {
+    const { name, value } = e.target;
+    setLogin({ ...login, [name]: value });
+  };
+  const loginUser=async()=>{
+    const loginData= await authenticateLogin(login)
+    console.log("loginDAta",loginData)
+    handleClose()
+    setAccount(signup.firstName)
+  }
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="md">
       <Component>
@@ -117,13 +133,19 @@ export default function LoginDialog({ open, setOpen }) {
             <TextField
               variant="standard"
               label="Enter Email / Phone Number"
+              name="email"
+              value={login.email}
+              onChange={handleValueChange}
               fullWidth
               sx={{ marginBottom: "20px" }}
             />
             <TextField
               variant="standard"
               label="Enter Password"
-              type="password"
+              name="password"
+              type="text"
+              value={login.password}
+              onChange={handleValueChange}
               fullWidth
               sx={{ marginBottom: "14px" }}
             />
@@ -131,7 +153,7 @@ export default function LoginDialog({ open, setOpen }) {
               By continuing, you agree to Flipkart's Terms of Use and Privacy
               Policy.
             </Typography>
-            <LoginButton variant="contained" fullWidth>
+            <LoginButton variant="contained" fullWidth onClick={loginUser}>
               Login
             </LoginButton>
             <Typography sx={{ textAlign: "center", marginTop: "20px" }}>
