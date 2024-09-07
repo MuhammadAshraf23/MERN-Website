@@ -1,21 +1,15 @@
 import React from 'react'
+import { authenticateProduct } from '../services/Api'
 
 export default function HeroSection() {
+
+   const getProductsAll=()=>{
+    const response= authenticateProduct()
+   }
   return (
     <div>HeroSection
 
-
-        <h2>
-            heek
-        </h2>
-        <h2>
-            heek
-        </h2>
-        <h2>
-            heek
-        </h2> <h2>
-            heek
-        </h2>
+<button onClick={getProductsAll}>hello</button>
     </div>
   )
 }

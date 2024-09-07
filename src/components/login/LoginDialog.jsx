@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Box,
   Button,
@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { authenticateSignup,authenticateLogin} from "../../services/Api";
+import { authenticateSignup, authenticateLogin } from "../../services/Api";
 import { DataContext } from "../../context/DataProvider";
 
 const Component = styled(Box)`
@@ -21,7 +21,7 @@ const Image = styled(Box)`
     url(https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/login_img_c4a81e.png)
     center 85% no-repeat;
   height: 100%;
-  width: 40%; /* Adjusted width */
+  width: 40%;
   padding: 40px 35px;
   color: #fff;
 `;
@@ -31,7 +31,7 @@ const Wrapper = styled(Box)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 60%; /* Adjusted width */
+  width: 60%;
 `;
 
 const LoginButton = styled(Button)`
@@ -68,6 +68,7 @@ const accountInitialValue = {
     subHeading: "Signup with your mobile to get started",
   },
 };
+
 const signupInitialValues = {
   firstName: "",
   lastName: "",
@@ -76,17 +77,25 @@ const signupInitialValues = {
   phoneNumber: "",
 };
 
-const loginInitialValues={
-  email:'',
-  password:''
-
-}
+const loginInitialValues = {
+  email: "",
+  password: "",
+};
 
 export default function LoginDialog({ open, setOpen }) {
-  const { setAccount} = useContext(DataContext);
+  const { setAccount } = useContext(DataContext);
   const [signup, setSignup] = useState(signupInitialValues);
   const [loginState, seLoginState] = useState(accountInitialValue.login);
-  const [login,setLogin]=useState(loginInitialValues)
+  const [login, setLogin] = useState(loginInitialValues);
+
+  useEffect(() => {
+    // Check if user data exists in localStorage
+    const loggedInUser = localStorage.getItem("user");
+    if (loggedInUser) {
+      setAccount(loggedInUser);
+    }
+  }, [setAccount]);
+
   const handleClose = () => {
     setOpen(false);
   };
@@ -102,21 +111,25 @@ export default function LoginDialog({ open, setOpen }) {
 
   const signupUser = async () => {
     const response = await authenticateSignup(signup);
-     if (!response) return;
+    if (!response) return;
     handleClose();
-    setAccount(signup.firstName)
+    setAccount(signup.firstName);
+    localStorage.setItem("user", signup.firstName); // Save user to localStorage
   };
 
   const handleValueChange = (e) => {
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
   };
-  const loginUser=async()=>{
-    const loginData= await authenticateLogin(login)
-    console.log("loginDAta",loginData)
-    handleClose()
-    setAccount(signup.firstName)
-  }
+
+  const loginUser = async () => {
+    const response = await authenticateLogin(login);
+    console.log("loginData", response);
+    handleClose();
+    setAccount(response.data.firstName);
+    localStorage.setItem("user", response.data.firstName); // Save user to localStorage
+  };
+
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="md">
       <Component>

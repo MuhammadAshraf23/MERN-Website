@@ -1,29 +1,33 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { Typography, Menu, Box, MenuItem } from "@mui/material";
-import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-export default function Profile({account,setAccount}) {
-  const [open, setOpen] = useState(false);
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 
-  const handleClick = (e) => {
-    setOpen(e.currentTarget);
+export default function Profile({ account, setAccount }) {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setAnchorEl(null);
   };
-  const logOut=()=>{
-    setAccount("")
-  }
+
+  const handleLogout = () => {
+    setAccount("");
+    handleClose();
+  };
+
   return (
     <>
       <Box onClick={handleClick}>
-        <Typography>{account}</Typography>{" "}
+        <Typography>{account}</Typography>
       </Box>
-      <Menu anchorEl={open} open={Boolean(open)} onClose={handleClose}>
-        <Box sx={{display:'flex'}} onClick={logOut}>
-     <PowerSettingsNewIcon />
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
-        </Box>
+      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
+        <MenuItem onClick={handleLogout}>
+          <PowerSettingsNewIcon sx={{ marginRight: 1 }} />
+          Logout
+        </MenuItem>
       </Menu>
     </>
   );
